@@ -6,20 +6,36 @@ function start() {
   getUserSelection();
 }
 
-function getUserselection() {
-  // add event listeners to buttons, have them call makeRandomComputerChoice()
-
-  makeRandomComputerChoice();
+function getUserSelection() {
+  // add event listeners to buttons
+  document.querySelector(".rock").addEventListener("click", makeRandomComputerChoice);
+  document.querySelector(".paper").addEventListener("click", makeRandomComputerChoice);
+  document.querySelector(".scissors").addEventListener("click", makeRandomComputerChoice);
 }
+
+const computerChoice = "";
 
 function makeRandomComputerChoice() {
   // random math to determine computer choice
+  let textArray = ["rock", "paper", "scissors"];
+
+  let randomOption = Math.floor(Math.random() * textArray.length);
+
+  let computerChoice = textArray[randomOption];
+
+  console.log("makerandomcomputerchoice", randomOption);
 
   showAnimations();
 }
 
 function showAnimations() {
-  // start animations - shake, then end on selected option
+  // start animation shake
+  document.querySelector("#player1").classList.add("shake");
+  document.querySelector("#player2").classList.add("shake");
+
+  // show selected option
+  //   document.querySelector("#player1").classList.remove("player");
+  //   document.querySelector("#player1").classList.add("paper");
 
   determineWinner();
 }
@@ -36,9 +52,13 @@ function determineWinner() {
 
 function showWin() {
   console.log("Show Win!");
-  // show win text
+  document.querySelector("#win").classList.remove("hidden");
 }
 
-function showLose() {}
+function showLose() {
+  document.querySelector("#lose").classList.remove("hidden");
+}
 
-function showDraw() {}
+function showDraw() {
+  document.querySelector("#draw").classList.remove("hidden");
+}
